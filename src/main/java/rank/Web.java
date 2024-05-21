@@ -24,10 +24,13 @@ public class Web {
 
     public void addLink(String dataLink){
         String[] data = dataLink.split("->");
+        if(data.length<2){
+            throw new IllegalArgumentException("El string introducio no es valido: "+dataLink);
+        }
         String name = data[0];
         String bruh = data[1];
         if(name.isEmpty()||bruh.isEmpty()){
-            throw new IllegalArgumentException("El dataLink especificado ("+dataLink+") ha dado un fallo a la hora de dividirlo en partes");
+            throw new IllegalArgumentException("El dataLink especificado ( "+dataLink+" ) ha dado un fallo a la hora de dividirlo en partes");
         }else{
             Link xd = new Link(name, bruh);
             addSiteWithName(name);

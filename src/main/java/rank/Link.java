@@ -33,7 +33,7 @@ public class Link {
 
     @Override
     public int hashCode() {
-        return Objects.hash(origin, linked);
+        return (this.origin.toLowerCase()).hashCode()+(this.linked.toLowerCase()).hashCode();
     }
 
     @Override

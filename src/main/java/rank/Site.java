@@ -35,7 +35,7 @@ public class Site implements Comparable<Site> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, rank);
+        return (this.name.toLowerCase()).hashCode();
     }
 
     @Override

@@ -2,7 +2,7 @@ package rank;
 
 import java.util.Objects;
 
-public class Site {
+public class Site implements Comparable<Site> {
     private String name;
     private double rank;
     public Site(String n){
@@ -41,5 +41,10 @@ public class Site {
     @Override
     public String toString() {
         return name+"("+rank+")";
+    }
+
+    @Override
+    public int compareTo(Site o) {
+        return this.name.compareToIgnoreCase(o.name);
     }
 }

@@ -96,7 +96,7 @@ public class Web {
     }
 
     public void simulateClick(int numClick){
-        if(!sites.isEmpty()){
+        if(!sites.isEmpty()&&alea!=null){
             this.alea=new Random(1);
             List<Site> killerQueen= new ArrayList<>(sites);
             for(int i = 0; i<numClick; i++){

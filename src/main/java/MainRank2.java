@@ -17,18 +17,18 @@ public class MainRank2 {
                 "G->E",
                 "G->H"};
 
-        WebExtended web = new WebExtended();
+        WebExtended webExtended = new WebExtended();
         for (String arc: enlaces) {
-            web.addLink(arc);
+            webExtended.addLink(arc);
         }
-        web.switchSiteWithName("A");
-        web.switchSiteWithName("I");
-        web.switchSiteWithName("J");
-        System.out.println(web);
-        web.simulateClick(4000);
+        webExtended.switchSiteWithName("A");
+        webExtended.switchSiteWithName("I");
+        webExtended.switchSiteWithName("J");
+        System.out.println(webExtended);
+        webExtended.simulateClick(4000);
         System.out.println("Paginas ordenadas alfabeticamente");
-        System.out.println(web.getSitesByName());
+        System.out.println(webExtended.getSitesByName());
         System.out.println("Paginas ordenadas por rank");
-        System.out.println(web.getSitesByRank());
+        System.out.println(webExtended.getSitesByRank());
     }
 }

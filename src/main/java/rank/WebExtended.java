@@ -9,9 +9,9 @@ public class WebExtended extends Web{
 
     @Override
     protected void distribute(Site site, double prize) {
-        SiteExtended trolled = (SiteExtended) site;
-        if(trolled.isValid()){
-            super.distribute(trolled, prize);
+        SiteExtended siteExtended = (SiteExtended) site;
+        if(siteExtended.isValid()){
+            super.distribute(siteExtended, prize);
         }
     }
 
@@ -27,6 +27,4 @@ public class WebExtended extends Web{
             }
         }
     }
-
-    
 }

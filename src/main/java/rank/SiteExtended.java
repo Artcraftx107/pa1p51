@@ -18,12 +18,12 @@ public class SiteExtended extends Site{
 
     @Override
     public String toString() {
-        String stfu;
+        String fin;
         if(valid){
-            stfu=super.toString();
+            fin=super.toString();
         }else{
-            stfu=super.toString()+"*";
+            fin=super.toString()+"*";
         }
-        return stfu;
+        return fin;
     }
 }

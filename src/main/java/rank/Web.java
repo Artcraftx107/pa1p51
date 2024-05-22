@@ -5,12 +5,13 @@ import java.util.*;
 public class Web {
     private Set<Link> links;
     protected Set<Site> sites;
-    private double THRESHOLD;
+    private static final double THRESHOLD = 1E-5;
     private Random alea;
 
     public Web(){
         this.links=new HashSet<>();
         this.sites=new HashSet<>();
+        this.alea=new Random();
     }
 
     protected void addSite(Site site){
@@ -60,9 +61,9 @@ public class Web {
         Set<Site> linkedLinks = new HashSet<>();
         for(Link link : links){
             if(link.getOrigin().equalsIgnoreCase(site.getName())){
-                for(Site site1 : sites){
-                    if(site.getName().equalsIgnoreCase(link.getLinked())){
-                        linkedLinks.add(site);
+                for(Site potentialSite : sites){
+                    if(potentialSite.getName().equalsIgnoreCase(link.getLinked())){
+                        linkedLinks.add(potentialSite);
                         break;
                     }
                 }
@@ -71,16 +72,17 @@ public class Web {
         return linkedLinks;
     }
 
-    protected void distribute(Site site, double prize){
-        if(!(prize<THRESHOLD)){
-            double halfPrize = prize/2;
-            site.addRank(halfPrize);
-            Set<Site> aux = getSitesLinkedFrom(site);
-            if(!aux.isEmpty()){
-                double rest = halfPrize/(2*aux.size());
-                for(Site site1 : aux){
-                    site1.addRank(rest);
-                }
+    protected void distribute(Site site, double prize) {
+        if (prize < THRESHOLD) {
+            return;
+        }
+        double halfPrize = prize / 2;
+        site.addRank(halfPrize);
+        Set<Site> linkedSites = getSitesLinkedFrom(site);
+        if (!linkedSites.isEmpty()) {
+            double distributedPrize = halfPrize / linkedSites.size();
+            for (Site linkedSite : linkedSites) {
+                distribute(linkedSite, distributedPrize);
             }
         }
     }
@@ -95,7 +97,7 @@ public class Web {
 
     public void simulateClick(int numClick){
         if(!sites.isEmpty()){
-            alea=new Random(1);
+            this.alea=new Random(1);
             List<Site> killerQueen= new ArrayList<>(sites);
             for(int i = 0; i<numClick; i++){
                 int randomIndex = alea.nextInt(killerQueen.size());
@@ -106,20 +108,20 @@ public class Web {
     }
 
     public SortedSet<Site> getSitesByName(){
-        SortedSet<Site> awp = new TreeSet<>(sites);
-        return awp;
+        SortedSet<Site> sitesSortedByName = new TreeSet<>(sites);
+        return sitesSortedByName;
     }
 
     public SortedSet<Site> getSitesByRank(){
         SortedSet<Site> sortedSetByRank = new TreeSet<>(new Comparator<Site>() {
             @Override
             public int compare(Site o1, Site o2) {
-                // First compare by rank (in descending order)
+                // Primero mira el ranking y lo compara
                 int rankComparison = Double.compare(o2.getRank(), o1.getRank());
                 if (rankComparison != 0) {
                     return rankComparison;
                 } else {
-                    // If ranks are equal, compare by name (in ascending order)
+                    //Si los rangos son iguales, compara el nombre y los ordena por sus nombres.
                     return o1.getName().compareToIgnoreCase(o2.getName());
                 }
             }

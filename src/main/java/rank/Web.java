@@ -6,12 +6,11 @@ public class Web {
     private Set<Link> links;
     protected Set<Site> sites;
     private static final double THRESHOLD = 1E-5;
-    private Random alea;
+    private static Random alea = new Random(1);
 
     public Web(){
         this.links=new HashSet<>();
         this.sites=new HashSet<>();
-        this.alea=new Random();
     }
 
     protected void addSite(Site site){
@@ -97,7 +96,6 @@ public class Web {
 
     public void simulateClick(int numClick){
         if(!sites.isEmpty()&&alea!=null){
-            this.alea=new Random(1);
             List<Site> killerQueen= new ArrayList<>(sites);
             for(int i = 0; i<numClick; i++){
                 int randomIndex = alea.nextInt(killerQueen.size());

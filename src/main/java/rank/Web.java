@@ -19,7 +19,7 @@ public class Web {
 
     protected void addSiteWithName(String n){
         Site site = new Site(n);
-        sites.add(site);
+        addSite(site);
     }
 
     public void addLink(String dataLink){

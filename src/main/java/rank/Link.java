@@ -1,6 +1,5 @@
 package rank;
 
-import java.util.Objects;
 
 public class Link {
     private String origin;

@@ -1,6 +1,5 @@
 package rank;
 
-import java.util.Objects;
 
 public class Site implements Comparable<Site> {
     private String name;

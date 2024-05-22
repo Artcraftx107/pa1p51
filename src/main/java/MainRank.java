@@ -1,4 +1,5 @@
 import rank.Web;
+//No uso el import WebExtended, ya que he hecho una clase MainRank2 donde se usa WebExtended
 import rank.WebExtended;
 
 public class MainRank {
